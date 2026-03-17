@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>My Bookings</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">Airbnb </div>
+
+<div class="nav-links">
+
+<span id="userGreeting"></span>
+
+<a href="index.html">Home</a>
+
+<a href="add-property.html" id="addLink">Add Property</a>
+
+<a href="dashboard.html" id="dashLink">Dashboard</a>
+
+<a href="my-bookings.html" id="bookingLink">My Bookings</a>
+
+<a href="#" id="logoutLink" onclick="logout()">Logout</a>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<h2>My Bookings</h2>
+
+<div id="bookings"></div>
+
+
+</div>
+<div id="reviewModal" class="modal">
+<div class="modal-content">
+
+<h3>Leave Review</h3>
+
+<select id="rating">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<textarea id="comment" placeholder="Write your review..."></textarea>
+
+<button onclick="submitReview()">Submit</button>
+<button onclick="closeReviewModal()">Cancel</button>
+
+</div>
+</div>
+
+
+<script src="script.js"></script>
+
+
+
+</body>
+</html>

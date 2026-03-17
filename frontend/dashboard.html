@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Host Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+
+<div class="logo">Airbnb </div>
+
+<div class="nav-links">
+
+<span id="userGreeting" class="user-greet"></span>
+
+<a href="index.html">Home</a>
+
+<a href="add-property.html" id="addLink">Add Property</a>
+
+<a href="dashboard.html" id="dashLink">Dashboard</a>
+
+<a href="my-bookings.html" id="bookingLink">My Bookings</a>
+
+<a href="login.html" id="loginLink">Login</a>
+
+<a href="register.html" id="registerLink">Register</a>
+
+<a href="#" id="logoutLink" onclick="logout()">Logout</a>
+
+</div>
+
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3>Total Properties</h3>
+        <p id="totalProperties"></p>
+    </div>
+
+    <div class="card">
+        <h3>Total Bookings</h3>
+        <p id="totalBookings"></p>
+    </div>
+
+    <div class="card">
+        <h3>Total Earnings</h3>
+        <p id="totalEarnings"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+async function loadDashboard()
+{
+    const token = getToken();
+    const payload = decodeToken();
+
+    const response = await fetch(API_URL + "/host-dashboard/" + payload.user_id,
+    {
+        headers:
+        {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    const data = await response.json();
+
+    document.getElementById("totalProperties").innerText = data.total_properties;
+    document.getElementById("totalBookings").innerText = data.total_bookings;
+    document.getElementById("totalEarnings").innerText = "₹" + data.total_earnings;
+}
+
+loadDashboard();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f6f7fb;
+color:#333;
+line-height:1.5;
+background:linear-gradient(to bottom,#fafafa,#f3f3f3);
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:white;
+border-bottom:1px solid #eaeaea;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#ff385c;
+letter-spacing:1px;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#444;
+font-weight:500;
+padding:6px 10px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-links a:hover{
+background:#f3f3f3;
+color:#ff385c;
+}
+
+.user-greet{
+font-weight:600;
+color:#555;
+}
+
+/* PAGE CONTAINER */
+
+.container{
+width:90%;
+max-width:1200px;
+margin:40px auto;
+}
+
+/* SEARCH BAR */
+
+.search-bar{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+}
+
+.search-bar input{
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+}
+
+.search-bar button{
+padding:12px 18px;
+border:none;
+background:#ff385c;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+}
+
+.search-bar button:hover{
+background:#e03150;
+}
+
+/* PROPERTY GRID */
+
+#properties{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+gap:25px;
+}
+
+/* PROPERTY CARD */
+
+.card{
+background:white;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,0.06);
+transition:0.25s;
+display:flex;
+flex-direction:column;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+.property-img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-bottom:1px solid #eee;
+}
+
+.card h3{
+font-size:18px;
+margin:12px 15px 5px 15px;
+}
+
+.card p{
+font-size:14px;
+margin:3px 15px;
+color:#555;
+}
+
+.stars{
+margin:6px 15px;
+color:#ffb400;
+}
+
+/* BUTTONS */
+
+button{
+margin:12px 15px 15px 15px;
+padding:10px;
+border:none;
+border-radius:8px;
+background:#ff385c;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#e03150;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+justify-content:center;
+align-items:center;
+z-index:20;
+}
+
+.modal-content{
+background:white;
+padding:30px;
+border-radius:12px;
+width:340px;
+display:flex;
+flex-direction:column;
+gap:12px;
+box-shadow:0 10px 35px rgba(0,0,0,0.2);
+}
+
+/* INPUTS */
+
+input,
+select,
+textarea{
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+width:100%;
+}
+
+textarea{
+resize:none;
+height:80px;
+}
+
+/* BOOKING SUMMARY */
+
+.booking-summary-card{
+background:#fafafa;
+border-radius:10px;
+padding:12px;
+margin-top:10px;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:6px;
+font-size:14px;
+}
+
+.summary-divider{
+height:1px;
+background:#ddd;
+margin:6px 0;
+}
+
+.total-row{
+font-weight:700;
+font-size:15px;
+}
+
+/* BOOKINGS GRID */
+
+#bookings{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+gap:25px;
+}
+
+/* FORMS (login/register/add property) */
+
+.container input,
+.container textarea,
+.container select{
+margin-bottom:12px;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#333;
+color:white;
+padding:14px 18px;
+border-radius:8px;
+display:none;
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Airbnb Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+
+<div class="logo">Airbnb</div>
+
+<div class="nav-links">
+
+<span id="userGreeting" class="user-greet"></span>
+
+<a href="index.html">Home</a>
+
+<a href="add-property.html" id="addLink">Add Property</a>
+
+<a href="dashboard.html" id="dashLink">Dashboard</a>
+
+<a href="my-bookings.html" id="bookingLink">My Bookings</a>
+
+<a href="login.html" id="loginLink">Login</a>
+
+<a href="register.html" id="registerLink">Register</a>
+
+<a href="#" id="logoutLink" onclick="logout()">Logout</a>
+
+</div>
+
+</div>
+
+<div class="container">
+
+    <div class="search-bar">
+        <input type="text" id="searchLocation" placeholder="Search by location...">
+        <button onclick="searchProperties()">Search</button>
+    </div>
+
+    <h2>Available Properties</h2>
+    <div id="properties"></div>
+
+</div>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <h3>Book Property</h3>
+
+        <input type="date" id="checkIn" onchange="calculateBooking()">
+        <input type="date" id="checkOut" onchange="calculateBooking()">
+
+        <div id="bookingSummary" style="margin-top:15px;font-weight:bold;"></div>
+
+        <button onclick="confirmBooking()">Confirm</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
