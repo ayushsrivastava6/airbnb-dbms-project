@@ -544,7 +544,7 @@ app.get("/reviews/property/:id", async (req, res) =>
         SELECT r.rating, r.comment, u.full_name
         FROM reviews r
         JOIN bookings b ON r.booking_id = b.booking_id
-        JOIN users u ON b.user_id = u.user_id
+        JOIN users u ON b.guest_id = u.user_id
         WHERE b.property_id = $1
         `,
         [propertyId]
