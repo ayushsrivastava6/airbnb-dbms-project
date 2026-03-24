@@ -523,38 +523,59 @@ async function viewReviews(propertyId)
 {
     try
     {
-        const res = await fetch(API_URL + `/reviews/property/${propertyId}`);
+        const res = await fetch(API_URL + "/reviews/property/" + propertyId);
         const data = await res.json();
 
-        if (data.length === 0)
+        if (!Array.isArray(data))
         {
-            alert("No reviews yet");
+            alert("Error loading reviews");
+            console.error(data);
             return;
         }
 
-        let output = "";
-        if (!Array.isArray(data))
-{
-    console.error("Not an array:", data);
-    alert("Backend error: check console");
-    return;
-}
+        const modal = document.getElementById("reviewModal");
+        const list = document.getElementById("reviewList");
 
-        data.forEach(review =>
+        list.innerHTML = "";
+
+        if (data.length === 0)
         {
-            output += `
-User: ${review.email}
-Rating: ${review.rating}
-Comment: ${review.comment}
+            list.innerHTML = "<p>No reviews yet.</p>";
+        }
+        else
+        {
+            data.forEach(review =>
+            {
+                const div = document.createElement("div");
+                div.className = "review-card";
 
-`;
-        });
+                div.innerHTML = `
+                    <p><strong>${review.full_name}</strong></p>
+                    <p>${"⭐".repeat(review.rating)}</p>
+                    <p>${review.comment || "No comment"}</p>
+                `;
 
-        alert(output);
+                list.appendChild(div);
+            });
+        }
+
+        modal.style.display = "block";
     }
-    catch(err)
+    catch (err)
     {
         console.error(err);
         alert("Error loading reviews");
     }
 }
+function closeReviewModal()
+{
+    document.getElementById("reviewModal").style.display = "none";
+}
+window.onclick = function(event)
+{
+    const modal = document.getElementById("reviewModal");
+    if (event.target === modal)
+    {
+        modal.style.display = "none";
+    }
+};
