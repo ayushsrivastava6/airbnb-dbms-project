@@ -417,27 +417,30 @@ async function loadMyBookings()
         }
 
         data.forEach(booking =>
-        {
-            const card = document.createElement("div");
-            card.className = "card";
+    {
+        const card = document.createElement("div");
+        card.className = "card";
 
-            card.innerHTML = `
+        const checkIn = new Date(booking.check_in).toLocaleDateString('en-IN');
+        const checkOut = new Date(booking.check_out).toLocaleDateString('en-IN');
+
+        card.innerHTML = `
     <img class="property-img"
-         src="${booking.image_url || 'https://source.unsplash.com/600x400/?house'}">
+        src="${booking.image_url || 'https://source.unsplash.com/600x400/?house'}">
 
     <h3>${booking.title}</h3>
-    <p><strong>Check-in:</strong> ${booking.check_in}</p>
-    <p><strong>Check-out:</strong> ${booking.check_out}</p>
+    <p><strong>Check-in:</strong> ${checkIn}</p>
+    <p><strong>Check-out:</strong> ${checkOut}</p>
     <p><strong>Total:</strong> ₹${booking.total_price}</p>
     <p><strong>Status:</strong> ${booking.booking_status}</p>
 
     <button onclick="openReviewModal(${booking.booking_id})">
         Leave Review
     </button>
-`;
+    `;
 
-            container.appendChild(card);
-        });
+        container.appendChild(card);
+    });
     }
     catch (err)
     {
