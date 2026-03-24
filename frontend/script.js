@@ -144,10 +144,9 @@ async function loadProperties(url = "/properties-with-rating")
                 Book
             </button>
 
-            <button onclick="viewReviews(${property.property_id})"
-                    style="background:#28a745;margin-left:10px;">
-                View Reviews
-            </button>
+            <button class="view-reviews-btn" onclick="viewReviews(${property.property_id})">
+    View Reviews
+</button>
 
             ${deleteButton}
             `;

@@ -335,3 +335,20 @@ box-shadow:0 6px 18px rgba(0,0,0,0.2);
     font-size: 14px;
     color: #555;
 }
+.view-reviews-btn
+{
+    background: white;
+    color: #ff385c;
+    border: 2px solid #ff385c;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-reviews-btn:hover
+{
+    background: #ff385c;
+    color: white;
+}
