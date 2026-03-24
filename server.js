@@ -554,9 +554,7 @@ app.get("/reviews/property/:id", async (req, res) =>
     }
     catch (err)
     {
-        console.error("ERROR:", err.message);
-
-        // IMPORTANT: return JSON (not plain text)
+        console.error(err);
         res.status(500).json({ error: err.message });
     }
 });
