@@ -141,9 +141,15 @@ async function loadProperties(url = "/properties-with-rating")
                 <p><strong>Price:</strong> ₹${property.price_per_night}</p>
                 <p><strong>Host:</strong> ${property.host_name}</p>
                 <button onclick="openBookingModal(${property.property_id}, ${property.price_per_night})">
-                    Book
-                </button>
-                ${deleteButton}
+                Book
+            </button>
+
+            <button onclick="viewReviews(${property.property_id})"
+                    style="background:#28a745;margin-left:10px;">
+                View Reviews
+            </button>
+
+            ${deleteButton}
             `;
 
             container.appendChild(card);
@@ -449,30 +455,7 @@ async function loadMyBookings()
     }
 }
 let selectedBookingId = null;
-app.get("/reviews/property/:propertyId", async (req, res) =>
-{
-    const { propertyId } = req.params;
 
-    try
-    {
-        const result = await pool.query(
-        `
-        SELECT r.rating, r.comment, u.email
-        FROM reviews r
-        JOIN bookings b ON r.booking_id = b.booking_id
-        JOIN users u ON b.user_id = u.user_id
-        WHERE b.property_id = $1
-        `,
-        [propertyId]);
-
-        res.json(result.rows);
-    }
-    catch(err)
-    {
-        console.error(err);
-        res.status(500).send("Error fetching reviews");
-    }
-});
 function openReviewModal(bookingId)
 {
     selectedBookingId = bookingId;
@@ -535,3 +518,37 @@ document.addEventListener("DOMContentLoaded", () =>
         loadMyBookings();
     }
 });
+
+async function viewReviews(propertyId)
+{
+    try
+    {
+        const res = await fetch(API_URL + `/reviews/property/${propertyId}`);
+        const data = await res.json();
+
+        if (data.length === 0)
+        {
+            alert("No reviews yet");
+            return;
+        }
+
+        let output = "";
+
+        data.forEach(review =>
+        {
+            output += `
+User: ${review.email}
+Rating: ${review.rating}
+Comment: ${review.comment}
+
+`;
+        });
+
+        alert(output);
+    }
+    catch(err)
+    {
+        console.error(err);
+        alert("Error loading reviews");
+    }
+}
