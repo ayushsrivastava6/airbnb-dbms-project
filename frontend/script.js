@@ -545,18 +545,24 @@ async function viewReviews(propertyId)
         else
         {
             data.forEach(review =>
-            {
-                const div = document.createElement("div");
-                div.className = "review-card";
+{
+    const div = document.createElement("div");
+    div.className = "review-card";
 
-                div.innerHTML = `
-                    <p><strong>${review.full_name}</strong></p>
-                    <p>${"⭐".repeat(review.rating)}</p>
-                    <p>${review.comment || "No comment"}</p>
-                `;
+    const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
 
-                list.appendChild(div);
-            });
+    div.innerHTML = `
+        <div class="review-header">
+            <span class="review-name">${review.full_name}</span>
+            <span class="review-stars">${stars}</span>
+        </div>
+        <div class="review-comment">
+            ${review.comment || "No comment provided"}
+        </div>
+    `;
+
+    list.appendChild(div);
+});
         }
 
         modal.style.display = "block";
