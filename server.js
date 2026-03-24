@@ -541,13 +541,14 @@ app.get("/reviews/property/:propertyId", async (req, res) =>
     {
         const result = await pool.query(
         `
-        SELECT r.rating, r.comment, u.email
+        SELECT r.rating, r.comment, u.full_name, u.email
         FROM reviews r
         JOIN bookings b ON r.booking_id = b.booking_id
         JOIN users u ON b.user_id = u.user_id
         WHERE b.property_id = $1
         `,
-        [propertyId]);
+        [propertyId]
+        );
 
         res.json(result.rows);
     }
