@@ -551,11 +551,11 @@ app.get("/reviews/property/:propertyId", async (req, res) =>
 
         res.json(result.rows);
     }
-    catch(err)
-    {
-        console.error(err);
-        res.status(500).send("Error fetching reviews");
-    }
+    catch (err)
+{
+    console.error("ERROR:", err.message);
+    res.status(500).json({ error: err.message });
+}
 });
 
 const PORT = process.env.PORT || 3000;
