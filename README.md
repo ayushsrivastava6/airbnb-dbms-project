@@ -51,8 +51,8 @@ Main Tables:
 
 ## 🔗 Live Demo
 
-* 🌐 Frontend: [https://your-netlify-link](https://stellar-flan-713e37.netlify.app/)
-* ⚙️ Backend API: [https://your-render-link](https://airbnb-dbms-project.onrender.com)
+* 🌐 Frontend: https://stellar-flan-713e37.netlify.app/
+* ⚙️ Backend API: https://airbnb-dbms-project.onrender.com
 
 ---
 
