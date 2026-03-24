@@ -533,6 +533,12 @@ async function viewReviews(propertyId)
         }
 
         let output = "";
+        if (!Array.isArray(data))
+{
+    console.error("Not an array:", data);
+    alert("Backend error: check console");
+    return;
+}
 
         data.forEach(review =>
         {

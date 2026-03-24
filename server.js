@@ -533,15 +533,15 @@ app.get('/my-bookings', authMiddleware, async (req, res) =>
         res.status(500).json({ message: 'Error fetching bookings' });
     }
 });
-app.get("/reviews/property/:propertyId", async (req, res) =>
+app.get("/reviews/property/:id", async (req, res) =>
 {
-    const { propertyId } = req.params;
+    const propertyId = req.params.id;
 
     try
     {
         const result = await pool.query(
         `
-        SELECT r.rating, r.comment, u.full_name, u.email
+        SELECT r.rating, r.comment, u.full_name
         FROM reviews r
         JOIN bookings b ON r.booking_id = b.booking_id
         JOIN users u ON b.user_id = u.user_id
@@ -553,10 +553,12 @@ app.get("/reviews/property/:propertyId", async (req, res) =>
         res.json(result.rows);
     }
     catch (err)
-{
-    console.error("ERROR:", err.message);
-    res.status(500).json({ error: err.message });
-}
+    {
+        console.error("ERROR:", err.message);
+
+        // IMPORTANT: return JSON (not plain text)
+        res.status(500).json({ error: err.message });
+    }
 });
 
 const PORT = process.env.PORT || 3000;
