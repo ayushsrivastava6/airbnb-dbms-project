@@ -449,7 +449,30 @@ async function loadMyBookings()
     }
 }
 let selectedBookingId = null;
+app.get("/reviews/property/:propertyId", async (req, res) =>
+{
+    const { propertyId } = req.params;
 
+    try
+    {
+        const result = await pool.query(
+        `
+        SELECT r.rating, r.comment, u.email
+        FROM reviews r
+        JOIN bookings b ON r.booking_id = b.booking_id
+        JOIN users u ON b.user_id = u.user_id
+        WHERE b.property_id = $1
+        `,
+        [propertyId]);
+
+        res.json(result.rows);
+    }
+    catch(err)
+    {
+        console.error(err);
+        res.status(500).send("Error fetching reviews");
+    }
+});
 function openReviewModal(bookingId)
 {
     selectedBookingId = bookingId;
