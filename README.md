@@ -137,12 +137,6 @@ npm start
 
 ---
 
-## 📸 Screenshots
-
-(Add your screenshots here)
-
----
-
 ## 👨‍💻 Author
 
 **Ayush Srivastava**
